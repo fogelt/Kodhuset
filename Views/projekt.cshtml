@@ -1,10 +1,36 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@{ Layout = null; }
+﻿@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+  Layout = null;
+    
+  IPublishedContent? utvaldBild = Model.Value<IPublishedContent>("utvaldBild");
+}
+
 <!doctype html>
 <html lang="sv">
-<head><meta charset="utf-8"><title>@Model.Name</title></head>
+
+<head>
+  <meta charset="utf-8">
+  <title>@Model.Name</title>
+</head>
+
 <body>
   <h1>@Model.Name</h1>
-  @Model.Value("beskrivning")
+
+  <div>
+    @Model.Value("beskrivning")
+  </div>
+
+  @if (utvaldBild != null)
+  {
+    <img src="@utvaldBild.Url()" alt="@utvaldBild.Name" />
+  }
+
+  <p><strong>Kund:</strong> @Model.Value("kund")</p>
+<p><strong>Teknik:</strong> @string.Join(", ", Model.Value<IEnumerable<string>>("teknik") ?? new string[0])</p>
+
 </body>
+
 </html>

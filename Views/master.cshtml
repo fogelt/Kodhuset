@@ -67,9 +67,7 @@
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
       @foreach (var item in selection!.Children())
       {
-        <li style="display: inline; margin-left: 5px; margin-right: 5px">
-          <a href="@item.Url()">@item.Name().ToUpper()</a>
-        </li>
+        <a href="@item.Url()" style="margin-left: 5px; margin-right: 5px">@item.Name().ToUpper()</a>
       }
     </nav>
   </header>

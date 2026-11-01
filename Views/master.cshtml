@@ -4,6 +4,8 @@
 @{
   var selection = Umbraco.ContentAtRoot()
       .FirstOrDefault();
+
+  IPublishedContent? parentNode = Model.Parent();
 }
 
 <!doctype html>
@@ -33,15 +35,21 @@
   </header>
 
   <main style="flex: 1;">
-    @RenderBody()
-  </main>
+    @if (parentNode != null)
+    {
+      <a href="@parentNode.Url()" id="back-button"
+         style="display: inline-block; margin: 15px 5%; cursor: pointer;">&larrhk;
+        @parentNode.Name</a>
+      }
+      @RenderBody()
+    </main>
 
-  <footer>
-    <p style="text-align: center; letter-spacing: 0.1rem; font-style: italic; font-weight: 100;">© 2026 Teknikern.
-      Made with
-      Umbraco.</p>
-    </footer>
+    <footer>
+      <p style="text-align: center; letter-spacing: 0.1rem; font-style: italic; font-weight: 100;">© 2026 Teknikern.
+        Made with
+        Umbraco.</p>
+      </footer>
 
-  </body>
+    </body>
 
-</html>
+  </html>

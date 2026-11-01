@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+  Layout = Layout = "~/Views/Master.cshtml";
+}
+
+
+<ul>
+  @foreach (var project in Model.Children())
+  {
+    <li><a href="@project.Url()">@project.Name</a></li>
+  }
+</ul>

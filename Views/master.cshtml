@@ -19,7 +19,9 @@
 <body>
   <header
     style="text-align: center; border-bottom: 1px solid #3d3d3d; padding-bottom: 10px; width: 90%; margin-right: auto; margin-left: auto;">
-    <h1>Kodhuset</h1>
+    <a href="/">
+      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px" alt="Kodhusets logga">
+    </a>
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
       @foreach (var item in selection!.Children())
       {
@@ -35,10 +37,6 @@
   </main>
 
   <footer>
-    <div class="promo-box"
-         style="background-color:white; color: black; gap:200px; min-height: 300px; clip-path: polygon(0 50px, 100% 0, 100% 250px, 0 100%); display: flex; align-items: center; flex-direction: row; justify-content: center;">
-
-    </div>
     <p style="text-align: center; letter-spacing: 0.1rem; font-style: italic; font-weight: 100;">© 2026 Teknikern.
       Made with
       Umbraco.</p>

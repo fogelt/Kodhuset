@@ -4,11 +4,11 @@
 }
 
 <h1>@Model.Name</h1>
-@Model.Value("brodtext")
+<p>@Model.Value("infoText")</p>
 <ul>
-  @foreach (var barn in Model.Children())
+  @foreach (var node in Model.Children())
   {
-    <li><a href="@barn.Url()">@barn.Name</a></li>
+    <li style="list-style-type: none;"><a href="@node.Url()">@node.Name</a></li>
   }
 </ul>
 

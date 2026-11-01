@@ -65,6 +65,7 @@
       </svg>
     </button>
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
+      <a href="@selection!.Url()" style="margin-left: 5px; margin-right: 5px">@selection!.Name().ToUpper()</a>
       @foreach (var item in selection!.Children())
       {
         <a href="@item.Url()" style="margin-left: 5px; margin-right: 5px">@item.Name().ToUpper()</a>

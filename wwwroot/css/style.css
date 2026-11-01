@@ -12,7 +12,7 @@ body {
 }
 
 @media (prefers-color-scheme: light) {
-        --bg-color: white;
+        --bg-color: #d3fff5;
         --text-color: black;
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 html.light {
-  --bg-color: white;
+  --bg-color: #d3fff5;
   --text-color: black;
 
   & .icon-sun {
@@ -47,6 +47,38 @@ main {
 a {
   color: var(--text-color);
   font-weight: 100;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.07rem;
   text-transform: uppercase;
+}
+
+.checker-container {
+  background-color: #E5E5F7;
+  background-image:  repeating-linear-gradient(to right, transparent 0, transparent 1.6666666666666667px, #E5E5F7 1.6666666666666667px, #E5E5F7 5px, transparent 5px, transparent 6.666666666666667px), repeating-linear-gradient(to bottom, transparent 0, transparent 1.6666666666666667px, #E5E5F7 1.6666666666666667px, #E5E5F7 5px, transparent 5px, transparent 6.666666666666667px), linear-gradient(to bottom, #444CF7 0.6px, transparent 0.6px), linear-gradient(to right, #444CF7 0.6px, transparent 0.6px) ;
+  background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+  background-position: 0 0, 0 0, 0 -0.2px, -0.2px 0;
+}
+
+.primary-btn {
+  display: inline-block;
+  background-color: #c0c0c0;
+  color: #000000;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+  text-decoration: none;
+  
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+  box-shadow: 1px 1px 0px #3a3a3a;
+}
+
+.primary-btn:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #dbdbdb; 
+  border-bottom: 2px solid #dbdbdb; 
+  box-shadow: 1px 1px 0px #787878;
 }

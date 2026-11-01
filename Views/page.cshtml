@@ -1,14 +1,17 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-  Layout = Layout = "~/Views/Master.cshtml";
+  Layout = "~/Views/master.cshtml";
+  var articleContent = Model.Value("htmldoc");
+  Boolean hasChildren = Model.Children().Any();
 }
 
-<h1>@Model.Name</h1>
-<p>@Model.Value("infoText")</p>
-<ul>
+<article class="document-container">@articleContent</article>
+@if (hasChildren)
+{
+  <hr style="margin-top: 20px;" />
+  <p>Du kanske också är interesserad av:</p>
   @foreach (var node in Model.Children())
   {
-    <li style="list-style-type: none;"><a href="@node.Url()">@node.Name</a></li>
+    <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
   }
-</ul>
-
+}

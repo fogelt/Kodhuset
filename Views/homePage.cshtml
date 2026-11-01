@@ -1,9 +1,7 @@
 ﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-  Layout = "~/Views/Master.cshtml";
-  var articleContent = Model.Value<string>("articleContent");
-  var pageTitle = Model.Value("title");
+  Layout = "~/Views/master.cshtml";
+  var articleContent = Model.Value("htmldoc");
 }
 
-<h1>@pageTitle</h1>
-<article>@Html.Raw(System.Net.WebUtility.HtmlDecode(articleContent))</article>
+<article class="document-container">@articleContent</article>

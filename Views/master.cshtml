@@ -1,4 +1,3 @@
-@using Umbraco.Cms.Core.Models
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 
 @{
@@ -16,14 +15,55 @@
   <title>@Model.Name</title>
   <link rel="stylesheet" href="/css/style.css">
   @RenderSection("Head", required: false)
+
+  <script>
+      const htmlElement = document.documentElement;
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        htmlElement.classList.add(savedTheme);
+      } else {
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const targetTheme = systemPrefersDark ? 'dark' : 'light';
+        htmlElement.classList.add(targetTheme);
+        localStorage.setItem('theme', targetTheme);
+      }
+  </script>
 </head>
 
 <body>
   <header
-    style="text-align: center; border-bottom: 1px solid #3d3d3d; padding-bottom: 10px; width: 90%; margin-right: auto; margin-left: auto;">
+    style="text-align: center; border-bottom: 1px solid #3d3d3d; padding-bottom: 10px; width: 90%; margin-right: auto; margin-left: auto; ">
     <a href="/">
-      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px" alt="Kodhusets logga">
+      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px; background-color: #E5E5F7;
+      opacity: 0.8;
+      background-image:  repeating-linear-gradient(to right, transparent 0, transparent 1.6666666666666667px, #E5E5F7 1.6666666666666667px, #E5E5F7 5px, transparent 5px, transparent 6.666666666666667px), repeating-linear-gradient(to bottom, transparent 0, transparent 1.6666666666666667px, #E5E5F7 1.6666666666666667px, #E5E5F7 5px, transparent 5px, transparent 6.666666666666667px), linear-gradient(to bottom, #444CF7 0.6px, transparent 0.6px), linear-gradient(to right, #444CF7 0.6px, transparent 0.6px) ;
+      background-size: 100% 100%, 100% 100%, 20px 20px, 20px 20px;
+      background-position: 0 0, 0 0, 0 -0.2px, -0.2px 0;
+      padding: 20px; border-radius: 10px" alt="Kodhusets logga">
     </a>
+    <button id="theme-toggle"
+            style="position: absolute; top: 0; left: 0; margin-left: 20px; margin-top: 20px; background: none; color: inherit; padding: 4px 10px; cursor: pointer; font-size: 0.8rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-moon">
+        <title>moon-bold-duotone</title>
+        <g fill="currentColor">
+          <path fill-rule="evenodd"
+                d="M22 12.0004C22 17.5232 17.5228 22.0004 12 22.0004C10.8358 22.0004 9.71801 21.8014 8.67887 21.4357C8.24138 20.3772 8 19.217 8 18.0004C8 15.7792 8.80467 13.7459 10.1384 12.1762C11.31 13.8818 13.2744 15.0004 15.5 15.0004C17.8615 15.0004 19.9289 13.741 21.0672 11.8572C21.3065 11.4612 22 11.5377 22 12.0004Z"
+                clip-rule="evenodd" opacity=".5" />
+          <path
+          d="M2 12C2 16.3586 4.78852 20.0659 8.67887 21.4353C8.24138 20.3768 8 19.2166 8 18C8 15.7788 8.80467 13.7455 10.1384 12.1758C9.42027 11.1303 9 9.86422 9 8.5C9 6.13845 10.2594 4.07105 12.1432 2.93276C12.5392 2.69347 12.4627 2 12 2C6.47715 2 2 6.47715 2 12Z" />
+        </g>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" class="icon-sun">
+        <title>sun-duotone</title>
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path fill="currentColor" fill-opacity=".4"
+                d="M17.5 12C17.5 15.0377 15.0377 17.5 12 17.5C8.9624 17.5 6.5 15.0377 6.5 12C6.5 8.9624 8.9624 6.5 12 6.5C15.0377 6.5 17.5 8.9624 17.5 12Z"
+                stroke="none" />
+          <path
+          d="M20.5 12L22 12M18.0104 18.0104L19.0711 19.0711M12 20.5L12 22M5.9896 18.0104L4.9289 19.0711M3.5 12L2 12M5.9896 5.9896L4.9289 4.9289M12 3.5L12 2M18.0104 5.9896L19.0711 4.9289" />
+        </g>
+      </svg>
+    </button>
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
       @foreach (var item in selection!.Children())
       {
@@ -45,10 +85,26 @@
     </main>
 
     <footer>
-      <p style="text-align: center; letter-spacing: 0.1rem; font-style: italic; font-weight: 100;">© 2026 Teknikern.
+      <p style="text-align: center; letter-spacing: 0.1rem; font-style: italic; font-weight: 100;">© 2026 Kodhuset AB.
         Made with
         Umbraco.</p>
       </footer>
+
+      <script>
+          const toggleButton = document.getElementById('theme-toggle');
+
+          toggleButton.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+              htmlElement.classList.remove('dark');
+              htmlElement.classList.add('light');
+              localStorage.setItem('theme', 'light');
+            } else if (htmlElement.classList.contains('light')) {
+              htmlElement.classList.remove('light');
+              htmlElement.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+          });
+      </script>
 
     </body>
 

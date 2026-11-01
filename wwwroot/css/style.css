@@ -6,6 +6,37 @@ body {
     flex-direction: column;
     justify-content: center;
     justify-items: center;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@media (prefers-color-scheme: light) {
+        --bg-color: white;
+        --text-color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+        --bg-color: #191919;
+        --text-color: white;
+}
+
+html.light {
+  --bg-color: white;
+  --text-color: black;
+
+  & .icon-sun {
+    display: none;
+  }
+}
+
+html.dark {
+  --bg-color: #191919;
+  --text-color: white;
+
+  & .icon-moon {
+    display: none;
+  }
 }
 
 main {
@@ -14,7 +45,7 @@ main {
 }
 
 a {
-  color: black;
+  color: #38dde0;
   font-weight: 100;
   letter-spacing: 0.15rem;
   text-transform: uppercase;

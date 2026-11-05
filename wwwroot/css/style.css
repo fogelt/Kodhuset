@@ -35,7 +35,13 @@ html.light {
     border-left: 1px solid #808080;
     border-right: 2px solid #808080;
     border-bottom: 2px solid #808080;
-    box-shadow: 5px 5px 5px #00000036;
+  }
+  
+  & .document-header {
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    border-right: 2px solid #808080;
+    border-bottom: 2px solid #808080;
   }
 }
 
@@ -47,19 +53,32 @@ html.dark {
     display: none;
   }
 
-    & .document-container {
-      background-color:  #383838;
-      border-top: 1px solid #313030;
-      border-left: 1px solid #313030;
-      border-right: 2px solid #313030;
-      border-bottom: 2px solid #313030;
-      box-shadow: 5px 5px 5px #00000036;
+  & .document-container {
+    background-color:  #383838;
+    border-top: 1px solid #313030;
+    border-left: 1px solid #313030;
+    border-right: 2px solid #313030;
+    border-bottom: 2px solid #313030;
+  }
+
+  & .document-header {
+    border-top: 1px solid #313030;
+    border-left: 1px solid #313030;
+    border-right: 2px solid #313030;
+    border-bottom: 2px solid #313030;
   }
 }
 
 .document-container {
-  padding: 20px;
-  border-radius: 10px;
+  padding: 5px 20px 20px 20px;
+  box-shadow: 5px 5px 5px #00000036;
+}
+
+.document-header {
+    background-color: #444CF7;
+    height:35px;
+    color: white;
+    box-shadow: 5px 5px 5px #00000036;
 }
 
 main {

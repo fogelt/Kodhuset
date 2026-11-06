@@ -9,10 +9,6 @@
 
 <div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
   <p style="margin-left: 10px; font-weight: 900;">@pageName.Replace(" ", "_")</p>
-  <menu style="margin: 5px;">
-    <button class="primary-btn">_</button>
-    <button class="primary-btn">&#9633;</button>
-    <button class="primary-btn">X</button>
-  </menu>
+  @await Html.PartialAsync("decorationButtons")
 </div>
 <article class="document-container">@articleContent</article>

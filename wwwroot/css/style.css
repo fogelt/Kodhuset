@@ -10,6 +10,7 @@ body {
 
   main {
   width: 95%;
+  flex: 1;
   margin: 40px auto;
 }
 

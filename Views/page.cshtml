@@ -2,12 +2,10 @@
 @{
   Layout = "~/Views/master.cshtml";
   var articleContent = Model.Value("htmldoc");
-  List<string> fileExtensions = ["exe", "bat", "md", "txt", "html"];
-  int index = Random.Shared.Next(fileExtensions.Count);
-  string pageName = Model.Name + "." + fileExtensions[index];
+  string pageName = Model.Name.ToLower() + ".txt";
   Boolean hasChildren = Model.Children().Any();
+  IEnumerable<IPublishedContent>? projects = Model.Children().Where(x => x.ContentType.Alias == "project");
   IPublishedContent? parentNode = Model.Parent();
-
 }
 
 <div class="document-wrapper">
@@ -24,7 +22,7 @@
       }
       <hr>
       @articleContent
-      @if (hasChildren)
+      @if (hasChildren && projects.Count() == 0)
       {
         <hr style="margin-top: 20px;" />
         <p>Du kanske också är interesserad av:</p>
@@ -33,6 +31,16 @@
           <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
         }
       }
+      <div style="display:flex; gap:20px; flex-flow: row wrap;">
+        @if (projects.Count() != 0)
+        {
+          foreach (var project in projects)
+          {
+            @await Html.PartialAsync("projectDocument", project)
+          }
+        }
+      </div>
     </article>
   </div>
+
 

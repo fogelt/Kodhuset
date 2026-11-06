@@ -10,6 +10,7 @@
 <head>
   <meta charset="utf-8">
   <title>@Model.Name</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/animations.css">
   @RenderSection("Head", required: false)
@@ -21,7 +22,8 @@
     @await Html.PartialAsync("skipButton")
     @await Html.PartialAsync("themeToggler")
     <a href="/" style="display: inline-block;" tabindex="-1">
-      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px; padding: 20px; border-radius: 10px;"
+      <img src="/kodhuset-logo.png"
+           style="margin-bottom: 20px; margin-top: 20px; padding: 20px; border-radius: 10px; max-width: 70%; height: auto;"
            alt="Kodhusets logga" class="checker-container">
     </a>
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
@@ -34,7 +36,7 @@
     </nav>
   </header>
 
-  <main id="main" style="width: 60%; margin: 40px auto 40px auto; flex: 1;">
+  <main id="main">
     @RenderBody()
   </main>
 

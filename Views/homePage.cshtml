@@ -2,14 +2,12 @@
 @{
   Layout = "~/Views/master.cshtml";
   var articleContent = Model.Value("htmldoc");
-  List<string> fileExtensions = ["exe", "bat", "md", "txt", "html"];
-  int index = Random.Shared.Next(fileExtensions.Count);
-  string pageName = Model.Name + "." + fileExtensions[index];
+  string pageName = Model.Name + ".txt";
 }
 
 <div class="document-wrapper">
   <div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
-    <p style="margin-left: 10px; font-weight: 900;">@pageName.Replace(" ", "_")</p>
+    <p style="margin-left: 10px;">@pageName.Replace(" ", "_")</p>
     @await Html.PartialAsync("decorationButtons")
   </div>
   <article class="document-container">@articleContent</article>

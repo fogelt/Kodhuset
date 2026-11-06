@@ -1,0 +1,50 @@
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+  var images = Model.Value<IEnumerable<IPublishedContent>>("images") ?? Enumerable.Empty<IPublishedContent>();
+  var techList = Model.Value<IEnumerable<string>>("tech") ?? Enumerable.Empty<string>();
+  var windowText = Model.Name.ToLower() + ".exe";
+}
+
+<div class="document-wrapper" style="flex: 1 1 calc(50% - 10px); max-width: 100%;">
+  <div class=" document-header" style="display: flex; align-items: center; justify-content: space-between;">
+    <p style="margin-left: 10px;">@windowText.Replace(" ", "_")</p>
+    @await Html.PartialAsync("decorationButtons")
+  </div>
+  <article class="document-container"
+           style="height:90%; overflow: auto; display: flex; justify-content: space-between; gap: 5px; flex-direction: column">
+    <div>
+      @Model.Value("htmldoc")
+    </div>
+
+    <hr style="margin: 10px" />
+
+    @if (images.Any())
+    {
+      <div
+        style="display:flex; outline: 3px inset black; padding: 1%; background-color: #ffffff; justify-content: space-between; align-items: center">
+        @foreach (var image in images)
+        {
+          <img src="@image.Url()" height="100%" width="32.5%" alt="@image.Name"
+               style="object-fit: cover; border: 1px solid black" />
+        }
+      </div>
+    }
+
+    @if (techList.Any())
+    {
+      <hr style="margin: 10px" />
+      <p>Hur har vi skapat denna magiska teknologi?</p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        @foreach (var tech in techList)
+        {
+          <p style="outline: 3px inset black; padding: 5px; background-color: #ffffff; ">
+            @tech
+          </p>
+        }
+      </div>
+    }
+
+  </article>
+</div>

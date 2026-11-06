@@ -4,58 +4,60 @@ body {
     min-height: 100.1vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    justify-items: center;
     background-color: var(--bg-color);
-    color: var(--text-color);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+  main {
+  width: 95%;
+  margin: 40px auto;
+}
+
+@media (min-width: 768px) {
+  #main {
+    width: 60% !important;
+  }
+}
+
 @media (prefers-color-scheme: light) {
-        --bg-color: #efefef;
-        --text-color: black;
+        --bg-color: #008080;
 }
 
 @media (prefers-color-scheme: dark) {
         --bg-color: #262626;
-        --text-color: white;
 }
 
 html.light {
-  --bg-color: #efefef;
-  --text-color: black;
+  --bg-color: #008080;
 
   & .icon-sun {
     display: none;
   }
 
   & .document-container {
-    background-color: white;
-    border: 2px outset var(--text-color);
+    border: 2px outset black;
     border-top: none;
   }
   
   & .document-header {
-    border: 2px outset var(--text-color);
+    border: 2px outset black;
   }
 }
 
 html.dark {
   --bg-color: #262626;
-  --text-color: white;
 
   & .icon-moon {
     display: none;
   }
 
   & .document-container {
-    background-color:  #383838;
-    border: 2px outset var(--text-color);
+    border: 2px outset black;
     border-top: none;
   }
 
   & .document-header {
-    border: 2px outset var(--text-color);
+    border: 2px outset black;
   }
 }
 
@@ -64,6 +66,7 @@ html.dark {
   animation-duration: 1s;
 
   & .document-container {
+    background-color: #e0dfdf;
     padding: 5px 20px 20px 20px;
     box-shadow: 5px 5px 5px #00000036;
     border-radius: 0 0 5px 5px;

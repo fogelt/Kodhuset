@@ -7,7 +7,7 @@
   var windowText = Model.Name.ToLower() + ".exe";
 }
 
-<div class="document-wrapper" style="flex: 1 1 calc(50% - 10px); max-width: 100%;">
+<div class="document-wrapper" style="flex: 1 1 49%; max-width: 100%; animation: flyIn 0.5s; overflow-y: clip;">
   <div class=" document-header" style="display: flex; align-items: center; justify-content: space-between;">
     <p style="margin-left: 10px;">@windowText.Replace(" ", "_")</p>
     @await Html.PartialAsync("decorationButtons")

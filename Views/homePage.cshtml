@@ -7,8 +7,10 @@
   string pageName = Model.Name + "." + fileExtensions[index];
 }
 
-<div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
-  <p style="margin-left: 10px; font-weight: 900;">@pageName.Replace(" ", "_")</p>
-  @await Html.PartialAsync("decorationButtons")
+<div class="document-wrapper">
+  <div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
+    <p style="margin-left: 10px; font-weight: 900;">@pageName.Replace(" ", "_")</p>
+    @await Html.PartialAsync("decorationButtons")
+  </div>
+  <article class="document-container">@articleContent</article>
 </div>
-<article class="document-container">@articleContent</article>

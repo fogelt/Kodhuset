@@ -1,7 +1,7 @@
 html,
 body {
     margin: 0;
-    min-height: 100vh;
+    min-height: 100.1vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,19 +59,24 @@ html.dark {
   }
 }
 
-.document-container {
-  padding: 5px 20px 20px 20px;
-  box-shadow: 5px 5px 5px #00000036;
-  border-radius: 0 0 5px 5px;
-}
+.document-wrapper {
+  animation-name: spawnIn;
+  animation-duration: 1s;
 
-.document-header {
-  background: #2d34bd;
-  background: linear-gradient(90deg, rgba(45, 52, 189, 1) 0%, rgba(96, 103, 230, 1) 100%);
-  height:35px;
-  color: white;
-  box-shadow: 5px 5px 5px #00000036;
-  border-radius: 5px 5px 0 0;
+  & .document-container {
+    padding: 5px 20px 20px 20px;
+    box-shadow: 5px 5px 5px #00000036;
+    border-radius: 0 0 5px 5px;
+    }
+
+  & .document-header {
+    background: #2d34bd;
+    background: linear-gradient(90deg, rgba(45, 52, 189, 1) 0%, rgba(96, 103, 230, 1) 100%);
+    height:35px;
+    color: white;
+    box-shadow: 5px 5px 5px #00000036;
+    border-radius: 5px 5px 0 0;
+    }
 }
 
 a {
@@ -110,4 +115,8 @@ a {
   border-right: 2px solid #dbdbdb; 
   border-bottom: 2px solid #dbdbdb; 
   box-shadow: 1px 1px 0px #787878;
+}
+
+.skip-btn:focus {
+  animation: fadeIn 0.5s forwards;
 }

@@ -10,27 +10,29 @@
 
 }
 
-<div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
-  <p style="margin-left: 10px;">@pageName.Replace(" ", "_")</p>
-  @await Html.PartialAsync("decorationButtons")
-</div>
-<article class="document-container">
-  @if (parentNode != null)
-  {
-    <a href="@parentNode.Url()" id="back-button" class="primary-btn"
-       style="display: inline-block; margin-top: 15px; margin-bottom: 5px; cursor: pointer;">&larrhk;
-      @parentNode.Name</a>
-    }
-    <hr>
-    @articleContent
-    @if (hasChildren)
+<div class="document-wrapper">
+  <div class="document-header" style="display: flex; align-items: center; justify-content: space-between; gap: 5px;">
+    <p style="margin-left: 10px;">@pageName.Replace(" ", "_")</p>
+    @await Html.PartialAsync("decorationButtons")
+  </div>
+  <article class="document-container">
+    @if (parentNode != null)
     {
-      <hr style="margin-top: 20px;" />
-      <p>Du kanske också är interesserad av:</p>
-      @foreach (var node in Model.Children())
-      {
-        <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
+      <a href="@parentNode.Url()" id="back-button" class="primary-btn"
+         style="display: inline-block; margin-top: 15px; margin-bottom: 5px; cursor: pointer;">&larrhk;
+        @parentNode.Name</a>
       }
-    }
-  </article>
+      <hr>
+      @articleContent
+      @if (hasChildren)
+      {
+        <hr style="margin-top: 20px;" />
+        <p>Du kanske också är interesserad av:</p>
+        @foreach (var node in Model.Children())
+        {
+          <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
+        }
+      }
+    </article>
+  </div>
 

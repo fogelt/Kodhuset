@@ -11,15 +11,17 @@
   <meta charset="utf-8">
   <title>@Model.Name</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/animations.css">
   @RenderSection("Head", required: false)
 </head>
 
 <body>
   <header
     style="text-align: center; border-bottom: 1px solid #3d3d3d; padding-bottom: 10px; width: 90%; margin-right: auto; margin-left: auto; ">
+    @await Html.PartialAsync("skipButton")
     @await Html.PartialAsync("themeToggler")
-    <a href="/">
-      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px; padding: 20px; border-radius: 10px"
+    <a href="/" style="display: inline-block;" tabindex="-1">
+      <img src="/kodhuset-logo.png" style="margin-bottom: 20px; margin-top: 20px; padding: 20px; border-radius: 10px;"
            alt="Kodhusets logga" class="checker-container">
     </a>
     <nav style="border-top: 1px solid #3d3d3d; padding-top: 10px;">
@@ -32,7 +34,7 @@
     </nav>
   </header>
 
-  <main style="width: 60%; margin: 40px auto 40px auto; flex: 1;">
+  <main id="main" style="width: 60%; margin: 40px auto 40px auto; flex: 1;">
     @RenderBody()
   </main>
 

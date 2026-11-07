@@ -1,0 +1,18 @@
+@model Umbraco.Cms.Core.Models.Blocks.BlockListModel
+@if (Model != null && Model.Any())
+{
+  foreach (var coworker in Model)
+  {
+    var title = coworker.Content.Value("title");
+    var desc = coworker.Content.Value("desc");
+    var email = coworker.Content.Value("email");
+    var image = coworker.Content.Value("image");
+
+    <section style="border: inset 2px var(--text-color); width: 300px; height: 350px;">
+      <p>@title</p>
+      <p>@desc</p>
+      <p>@email</p>
+      <p>@image</p>
+    </section>
+  }
+}

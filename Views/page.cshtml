@@ -1,10 +1,12 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using Umbraco.Cms.Core.Models.Blocks
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
   Layout = "~/Views/master.cshtml";
   var articleContent = Model.Value("htmldoc");
   string pageName = Model.Name.ToLower() + ".txt";
-  Boolean hasChildren = Model.Children().Any();
+  IEnumerable<IPublishedContent>? subLinks = Model.Children().Where(x => x.ContentType.Alias == "page");
   IEnumerable<IPublishedContent>? projects = Model.Children().Where(x => x.ContentType.Alias == "project");
+  var coworkerList = Model.Value<BlockListModel>("coworkers");
   IPublishedContent? parentNode = Model.Parent();
 }
 
@@ -22,7 +24,15 @@
       }
       <hr>
       @articleContent
-      @if (hasChildren && projects.Count() == 0)
+      @if (projects.Any())
+      {
+        @await Html.PartialAsync("projectCarousel")
+      }
+      @if (coworkerList != null)
+      {
+        @await Html.PartialAsync("coworkerCard", coworkerList)
+      }
+      @if (subLinks.Any())
       {
         <hr style="margin-top: 20px;" />
         <p>Du kanske också är interesserad av:</p>
@@ -31,6 +41,5 @@
           <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
         }
       }
-      @await Html.PartialAsync("projectCarousel")
 
       

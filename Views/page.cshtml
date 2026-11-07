@@ -31,16 +31,6 @@
           <a href="@node.Url()" class="primary-btn" style="margin: 5px;">@node.Name.ToUpper()</a>
         }
       }
-      <div style="display:flex; gap:20px; flex-flow: row wrap;">
-        @if (projects.Count() != 0)
-        {
-          foreach (var project in projects)
-          {
-            @await Html.PartialAsync("projectDocument", project)
-          }
-        }
-      </div>
-    </article>
-  </div>
+      @await Html.PartialAsync("projectCarousel")
 
-
+      

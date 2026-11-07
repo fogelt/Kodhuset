@@ -1,0 +1,53 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+  IEnumerable<IPublishedContent>? projects = Model.Children().Where(x => x.ContentType.Alias == "project");
+}
+
+@if (projects.Count() != 0)
+{
+  <hr />
+  <menu style="display: flex; align-items: center; justify-content: center; padding: 0; gap: 2%; margin: 0;">
+    <button class="primary-btn" onClick="previousProject()">&larr;</button>
+    <p>Spana in våra projekt</p>
+    <button class="primary-btn" onClick="nextProject()">&rarr;</button>
+  </menu>
+  <div id="project-carousel" style="display: flex; gap:20px; overflow-x: hidden;">
+    @for (int i = 0; i < projects.Count(); i++)
+    {
+      <div id="project-@i" style="flex: 0 0 100%; width: 100%;">
+        @await Html.PartialAsync("projectDocument", projects.ToList()[i])
+      </div>
+    }
+  </div>
+}
+</article>
+</div>
+
+<script>
+  let currentProject = 0;
+
+  function scrollToProject(index) {
+    const carousel = document.getElementById("project-carousel");
+    const projects = carousel.children;
+
+    if (index < 0 || index >= projects.length) {
+      return;
+    }
+
+    currentProject = index;
+
+    carousel.scrollTo({
+      left: projects[index].offsetLeft - carousel.offsetLeft,
+      behavior: "smooth"
+    });
+  }
+
+  function nextProject() {
+    scrollToProject(currentProject + 1);
+  }
+
+  function previousProject() {
+    scrollToProject(currentProject - 1);
+  }
+</script>
+

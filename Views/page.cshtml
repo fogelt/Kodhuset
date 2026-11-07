@@ -30,7 +30,11 @@
       }
       @if (coworkerList != null)
       {
-        @await Html.PartialAsync("coworkerCard", coworkerList)
+        <hr style="margin-top: 20px;" />
+        <h2>Möt våra medarbetare</h2>
+        <section style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center;">
+          @await Html.PartialAsync("coworkerCard", coworkerList)
+        </section>
       }
       @if (subLinks.Any())
       {

@@ -1,0 +1,52 @@
+@model Umbraco.Cms.Core.Models.Blocks.BlockListModel
+@if (Model != null && Model.Any())
+{
+  int valueTracker = 0;
+  var gradientParts = new List<string>();
+  var currentPercentage = 0;
+
+  foreach (var item in Model)
+  {
+    var color = item.Content.Value<string>("color") ?? "#cccccc";
+    var value = item.Content.Value<int>("value");
+    var nextPercentage = currentPercentage + value;
+    valueTracker += value;
+
+    gradientParts.Add($"{color} {currentPercentage}% {nextPercentage}%");
+
+    currentPercentage = nextPercentage;
+  }
+
+  var gradient = $"conic-gradient({string.Join(", ", gradientParts)})";
+
+  <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+    <div
+      style="border: inset black 2px; width: 220px; height: 220px; flex-shrink: 0; border-radius: 50%; background: @gradient;">
+    </div>
+
+    <ul class="key"
+        style="list-style: none; padding: 0; margin: 0; flex: 1; min-width: 240px; display: flex; flex-direction: column; gap: 10px;">
+      @foreach (var item in Model)
+      {
+        var color = item.Content.Value<string>("color");
+        var value = item.Content.Value<int>("value");
+        var desc = item.Content.Value<string>("desc");
+
+        <li>
+          <strong style="background: @color; padding: 2px; border-radius: 5px; margin-right: 5px">
+            @value%
+          </strong>
+          @desc
+          <hr />
+        </li>
+      }
+    </ul>
+  </div>
+
+  @if (valueTracker > 100)
+  {
+    <p style="border: solid red 1px; background: rgb(255, 185, 185); padding: 4px; border-radius: 5px; width: fit-content;">
+      <strong>OBS: </strong>Cirkeldiagrammet är inte korrekt, summering över 100%
+    </p>
+  }
+}

@@ -5,6 +5,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--bg-color);
+    color: var(--text-color);
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
@@ -22,20 +23,24 @@ body {
 
 @media (prefers-color-scheme: light) {
         --bg-color: #008080;
+        --text-color: black
 }
 
 @media (prefers-color-scheme: dark) {
         --bg-color: #262626;
+        --text-color: white
 }
 
 html.light {
   --bg-color: #008080;
+  --text-color: black;
 
   & .icon-sun {
     display: none;
   }
 
   & .document-container {
+    background-color: #e0dfdf;
     border: 2px outset black;
     border-top: none;
   }
@@ -47,18 +52,20 @@ html.light {
 
 html.dark {
   --bg-color: #262626;
+  --text-color: white;
 
   & .icon-moon {
     display: none;
   }
 
   & .document-container {
-    border: 2px outset black;
+    background-color: #555555;
+    border: 2px outset white;
     border-top: none;
   }
 
   & .document-header {
-    border: 2px outset black;
+    border: 2px outset white;
   }
 }
 
@@ -67,7 +74,6 @@ html.dark {
   animation-duration: 1s;
 
   & .document-container {
-    background-color: #e0dfdf;
     padding: 5px 20px 20px 20px;
     box-shadow: 5px 5px 5px #00000036;
     border-radius: 0 0 5px 5px;

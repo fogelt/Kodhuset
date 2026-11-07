@@ -12,27 +12,25 @@
     <p style="margin-left: 10px;">@pageName.Replace(" ", "_")</p>
     @await Html.PartialAsync("decorationButtons")
   </div>
-  <article class="document-container" style="display:flex; flex-direction: column">
+  <article class="document-container">
     @articleContent
-    <article>
-      @if (chartList != null)
+    @if (chartList != null)
+    {
+      foreach (var chart in chartList)
       {
-        foreach (var chart in chartList)
-        {
-          var title = chart.Content.Value<string>("title");
-          var description = chart.Content.Value<string>("desc");
-          var chartItems = chart.Content.Value<BlockListModel>("chartItems");
+        var title = chart.Content.Value<string>("title");
+        var description = chart.Content.Value<string>("desc");
+        var chartItems = chart.Content.Value<BlockListModel>("chartItems");
 
-          <section class="chart-section">
-            <hr />
+        <section>
+          <hr />
 
-            <h2>@title</h2>
-            <p>@description</p>
+          <h2>@title</h2>
+          <p>@description</p>
 
-            @await Html.PartialAsync("pieChart", chartItems)
-          </section>
-        }
+          @await Html.PartialAsync("pieChart", chartItems)
+        </section>
       }
-    </article>
+    }
   </article>
 </div>

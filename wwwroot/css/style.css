@@ -53,6 +53,10 @@ html.light {
     background-color: #e0dfdf;
     border-top: 2px outset black;
   }
+
+  & .inset-rect {
+    background-color: #f2f1f1;
+  }
 }
 
 html.dark {
@@ -76,6 +80,10 @@ html.dark {
   & footer {
     background-color: #383838;
     border-top: 2px outset white;
+  }
+
+  & .inset-rect {
+    background-color: #484848;
   }
 }
 
@@ -139,4 +147,8 @@ a {
 
 .skip-btn:focus {
   animation: fadeIn 0.5s forwards;
+}
+
+.inset-rect {
+  border: 2px inset var(--text-color);
 }

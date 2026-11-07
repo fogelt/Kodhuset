@@ -1,0 +1,29 @@
+@using Umbraco.Cms.Core.Models
+@model Umbraco.Cms.Core.Models.Blocks.BlockListModel
+@if (Model != null && Model.Any())
+{
+  foreach (var coworker in Model)
+  {
+    var title = coworker.Content.Value("title");
+    var desc = coworker.Content.Value("desc");
+    var email = coworker.Content.Value("email");
+    var image = coworker.Content.Value<MediaWithCrops>("image");
+
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: fit-content">
+      <section style="border: inset 2px var(--text-color); width: 190px; height: 250px;">
+        <div style="position: relative; width: 100%; height: 100%; overflow: hidden;">
+          <img src="@image?.Url()" style="width: 100%; height: 100%; object-fit: cover;">
+          <p class="inset-rect"
+             style="position: absolute; bottom: -10px; left:3%; right: 3%; padding: 5px; text-align: center; width: fit-content">
+            @title
+          </p>
+          <p> @email </p>
+        </div>
+      </section>
+      <ul class="inset-rect" style="list-style: none; padding: 3px; width: fit-content;">
+        <li>@desc</li>
+        <li><a href="mailto:@email">@email</a></li>
+      </ul>
+    </div>
+  }
+}

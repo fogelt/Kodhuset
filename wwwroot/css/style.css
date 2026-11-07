@@ -48,6 +48,11 @@ html.light {
   & .document-header {
     border: 2px outset black;
   }
+
+  & footer {
+    background-color: #e0dfdf;
+    border-top: 2px outset black;
+  }
 }
 
 html.dark {
@@ -66,6 +71,11 @@ html.dark {
 
   & .document-header {
     border: 2px outset white;
+  }
+
+  & footer {
+    background-color: #383838;
+    border-top: 2px outset white;
   }
 }
 

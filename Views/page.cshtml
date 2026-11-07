@@ -28,7 +28,7 @@
       {
         @await Html.PartialAsync("projectCarousel")
       }
-      @if (coworkerList != null)
+      @if (coworkerList != null && coworkerList.Count() != 0)
       {
         <hr style="margin-top: 20px;" />
         <h2>Möt våra medarbetare</h2>
